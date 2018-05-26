@@ -21,6 +21,19 @@
                     console.log(data.DataCount);
                 })
             });
+
+            $("#GetMenu").click(function () {
+                var page = $("#page").val();
+                var role = $("#role").val();
+                console.log(role);
+                $.getJSON("/home/GetAllMenu", { "role": role, "pageNo": page }, function (data) {
+                    console.log(data.DataCount);
+                    console.log(data.Projects.length);
+                    for (var i = 0; i < data.Projects.length; i++) {
+                        console.log(data.Projects[i].Name);
+                    }
+                })
+            });
         });
     </script>
     }
@@ -29,3 +42,4 @@
 <input type="text" id="page" />
 <input type="button" id="GetRole" value="获取角色项目" />
 <input type="text" id="role" />
+<input type="button" id="GetMenu" value="获取菜单" />

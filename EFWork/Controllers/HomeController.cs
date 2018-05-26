@@ -40,7 +40,29 @@ namespace EFWork.Controllers
         {
             using (var db = new EFWorkContext())
             {
-                var d =  from m in db.Project where m.ParentId == null && m.RoleProject.Any(a => a.RoleId == role) select m;
+                //var d =  from m in db.Project where m.ParentId == null && m.RoleProject.Any(a => a.RoleId == role) select m;
+                var d = db.Project.Where(a => a.Parent == null && a.RoleProject.Any(b=>b.RoleId==role));
+                int dataCount = d.Count();
+                var p = await d.OrderBy(a => a.Id).Skip((pageNo - 1) * pageSize).Take(pageSize).ToListAsync();
+                ProjectResponse pr = new ProjectResponse();
+                pr.PageNo = pageNo;
+                pr.PageSize = pageSize;
+                pr.DataCount = dataCount;
+                pr.PageCount = (int)Math.Ceiling((decimal)dataCount / pageSize);
+                foreach (var item in p)
+                {
+                    pr.Projects.Add(new Project() { Id = item.Id, Name = item.Name, ParentId = item.ParentId });
+                }
+                return Json(pr, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public async Task<ActionResult> GetAllMenu(int role, int pageNo = 1, int pageSize = 5)
+        {
+            using (var db = new EFWorkContext())
+            {
+                //var d =  from m in db.Project where m.ParentId == null && m.RoleProject.Any(a => a.RoleId == role) select m;
+                var d = db.Menu.Where(a => a.Parent == null && a.Roles.Any(b => b.Id == role));
                 int dataCount = d.Count();
                 var p = await d.OrderBy(a => a.Id).Skip((pageNo - 1) * pageSize).Take(pageSize).ToListAsync();
                 ProjectResponse pr = new ProjectResponse();
