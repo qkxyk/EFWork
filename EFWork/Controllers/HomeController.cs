@@ -1,7 +1,9 @@
 ﻿using EFWork.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -34,13 +36,13 @@ namespace EFWork.Controllers
             }
         }
 
-        public ActionResult GetAllProject(int role, int pageNo = 1, int pageSize = 5)
+        public async Task<ActionResult> GetAllProject(int role, int pageNo = 1, int pageSize = 5)
         {
             using (var db = new EFWorkContext())
             {
-                var d = from m in db.Project where m.ParentId==null && m.RoleProject.Any(a => a.RoleId == role) select m;
+                var d =  from m in db.Project where m.ParentId == null && m.RoleProject.Any(a => a.RoleId == role) select m;
                 int dataCount = d.Count();
-                var p = d.OrderBy(a => a.Id).Skip((pageNo - 1) * pageSize).Take(pageSize);
+                var p = await d.OrderBy(a => a.Id).Skip((pageNo - 1) * pageSize).Take(pageSize).ToListAsync();
                 ProjectResponse pr = new ProjectResponse();
                 pr.PageNo = pageNo;
                 pr.PageSize = pageSize;
