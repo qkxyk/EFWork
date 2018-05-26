@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@section scripts{
+    <script>
+        $(function () {
+           
+            $("#GetAll").click(function () {
+                var page = $("#page").val();
+                console.log(page);
+                $.getJSON("/home/GetAllTopProject", { "pageNo": page/*, "pageSize": 5 */}, function (data) {
+                    console.log(data.DataCount);
+                })
+            });
+            $("#GetRole").click(function () {
+                var page = $("#page").val();
+                var role = $("#role").val();
+                console.log(role);
+                $.getJSON("/home/GetAllProject", { "role": role, "pageNo": page }, function (data) {
+                    console.log(data.DataCount);
+                })
+            });
+        });
+    </script>
+    }
+
+<input type="button" id="GetAll" value="获取所有项目" />
+<input type="text" id="page" />
+<input type="button" id="GetRole" value="获取角色项目" />
+<input type="text" id="role" />
