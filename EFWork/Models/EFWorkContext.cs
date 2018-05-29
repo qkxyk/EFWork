@@ -17,6 +17,8 @@ namespace EFWork.Models
         public IDbSet<RoleModel> Role { get; set; }
         public IDbSet<ProjectModel> Project { get; set; }
         public IDbSet<RoleProjectModel> RoleProject { get; set; }
+        public IDbSet<UserModel> User { get; set; }
+        public IDbSet<UserRoleModel> UserRole { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -25,6 +27,8 @@ namespace EFWork.Models
             modelBuilder.Configurations.Add(new ProjectMap());
             modelBuilder.Configurations.Add(new MenuMap());
             modelBuilder.Configurations.Add(new RoleProjectMap());
+            modelBuilder.Configurations.Add(new UserRoleMap());
+            modelBuilder.Configurations.Add(new UserMap());
             base.OnModelCreating(modelBuilder);
         }
     }

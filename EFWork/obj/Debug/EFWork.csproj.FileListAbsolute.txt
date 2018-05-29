@@ -36,3 +36,5 @@ D:\practice\C#\May\EFWork\EFWork\bin\EntityFramework.xml
 D:\practice\C#\May\EFWork\EFWork\bin\EntityFramework.SqlServer.xml
 D:\practice\C#\May\EFWork\EFWork\obj\Debug\EFWork.Migrations.initDb.resources
 D:\practice\C#\May\EFWork\EFWork\obj\Debug\EFWork.csproj.GenerateResource.Cache
+D:\practice\C#\May\EFWork\EFWork\bin\System.Linq.Dynamic.dll
+D:\practice\C#\May\EFWork\EFWork\obj\Debug\EFWork.Migrations.user.resources
