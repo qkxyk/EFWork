@@ -39,20 +39,36 @@
                 $.getJSON("/home/GetUserInfo", {}, function (data) {
                     console.log(data.BSuccess);
                     for (var i = 0; i < data.Users.length; i++) {
-                        console.log(data.Users[i].Name + "->" + data.Users[i].RoleName+"-->"+data.Users[i].IsAdmin);
+                        console.log(data.Users[i].Name + "->" + data.Users[i].RoleName + "-->" + data.Users[i].IsAdmin);
                     }
                 })
+            });
+
+            $("#AddDeviceData").click(function () {
+                var deviceName = $("#deviceName").val();
+                var deviceMessage = $("#deviceMessage").val();
+                $.post("/home/AddOrUpdate", { "Name": deviceName, "Message": deviceMessage }, function (data) {
+                    console.log(data);
+                });
             });
 
         });
     </script>
 }
 
-<input type="button" id="GetAll" value="获取所有项目" />
-<input type="text" id="page" />
-<input type="button" id="GetRole" value="获取角色项目" />
-<input type="text" id="role" />
-<input type="button" id="GetMenu" value="获取菜单" />
+
+<div class="row">
+    <input type="button" id="GetAll" value="获取所有项目" />
+    <input type="text" id="page" />
+    <input type="button" id="GetRole" value="获取角色项目" />
+    <input type="text" id="role" />
+    <input type="button" id="GetMenu" value="获取菜单" />
+</div>
 <div class="row">
     <input type="button" id="GetUser" value="获取用户信息" />
+</div>
+<div class="row">
+    <label for="deviceName">设备名称</label><input type="text" id="deviceName" />
+    <label for="deviceMessage">设备信息</label><input type="text" id="deviceMessage" />
+    <input type="button" id="AddDeviceData" value="添加设备数据" />
 </div>

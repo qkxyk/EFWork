@@ -114,7 +114,28 @@ namespace EFWork.Controllers
 
         }
 
-
+        public async Task<ActionResult> AddOrUpdate(DeviceDataModel d)
+        {
+            return null;
+            /*
+            using (var db = new EFWorkContext())
+            {
+                var dd = await db.DeviceData.Where(a => a.Name == d.Name).FirstOrDefaultAsync();//.FirstOrDefault();
+                if (dd == null)
+                {
+                    dd = db.DeviceData.Add(d);
+                }
+                else
+                {
+                    dd.Message = d.Message;
+                    dd.Dt = DateTime.Now;
+                    db.Entry<DeviceDataModel>(dd).State = EntityState.Modified;
+                }
+                db.SaveChanges();
+                return Json(new { dd.Id });
+            }
+            */
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

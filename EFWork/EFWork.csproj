@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -21,6 +22,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -136,46 +138,59 @@
     <Compile Include="Migrations\201805290434086_user.Designer.cs">
       <DependentUpon>201805290434086_user.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805300734494_adddata.cs" />
+    <Compile Include="Migrations\201805300734494_adddata.Designer.cs">
+      <DependentUpon>201805300734494_adddata.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805300754371_dataaddname.cs" />
+    <Compile Include="Migrations\201805300754371_dataaddname.Designer.cs">
+      <DependentUpon>201805300754371_dataaddname.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Entity\DevicDataModel.cs" />
+    <Compile Include="Models\Maps\DeviceDataMap.cs" />
     <Compile Include="Models\EFWorkContext.cs" />
-    <Compile Include="Models\MenuMap.cs" />
-    <Compile Include="Models\MenuModel.cs" />
-    <Compile Include="Models\ProjectMap.cs" />
-    <Compile Include="Models\ProjectModel.cs" />
-    <Compile Include="Models\ProjectResponse.cs" />
-    <Compile Include="Models\RoleMap.cs" />
-    <Compile Include="Models\RoleModel.cs" />
-    <Compile Include="Models\RoleProjectMap.cs" />
-    <Compile Include="Models\RoleProjectModel.cs" />
-    <Compile Include="Models\UserListModelView.cs" />
-    <Compile Include="Models\UserMap.cs" />
-    <Compile Include="Models\UserModel.cs" />
-    <Compile Include="Models\UserModelView.cs" />
-    <Compile Include="Models\UserRoleMap.cs" />
-    <Compile Include="Models\UserRoleModel.cs" />
+    <Compile Include="Models\Maps\MenuMap.cs" />
+    <Compile Include="Models\Entity\MenuModel.cs" />
+    <Compile Include="Models\Maps\ProjectMap.cs" />
+    <Compile Include="Models\Entity\ProjectModel.cs" />
+    <Compile Include="Models\ViewModel\ProjectResponse.cs" />
+    <Compile Include="Models\Maps\RoleMap.cs" />
+    <Compile Include="Models\Entity\RoleModel.cs" />
+    <Compile Include="Models\Maps\RoleProjectMap.cs" />
+    <Compile Include="Models\Entity\RoleProjectModel.cs" />
+    <Compile Include="Models\ViewModel\UserListModelView.cs" />
+    <Compile Include="Models\Maps\UserMap.cs" />
+    <Compile Include="Models\Entity\UserModel.cs" />
+    <Compile Include="Models\ViewModel\UserModelView.cs" />
+    <Compile Include="Models\Maps\UserRoleMap.cs" />
+    <Compile Include="Models\Entity\UserRoleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\_references.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -193,14 +208,19 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\ViewModel\BaseData\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Project_Readme.html" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201805260614264_initDb.resx">
@@ -209,12 +229,22 @@
     <EmbeddedResource Include="Migrations\201805290434086_user.resx">
       <DependentUpon>201805290434086_user.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805300734494_adddata.resx">
+      <DependentUpon>201805300734494_adddata.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805300754371_dataaddname.resx">
+      <DependentUpon>201805300754371_dataaddname.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">

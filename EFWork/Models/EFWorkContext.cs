@@ -19,6 +19,7 @@ namespace EFWork.Models
         public IDbSet<RoleProjectModel> RoleProject { get; set; }
         public IDbSet<UserModel> User { get; set; }
         public IDbSet<UserRoleModel> UserRole { get; set; }
+        public IDbSet<DeviceDataModel> DeviceData { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -29,6 +30,7 @@ namespace EFWork.Models
             modelBuilder.Configurations.Add(new RoleProjectMap());
             modelBuilder.Configurations.Add(new UserRoleMap());
             modelBuilder.Configurations.Add(new UserMap());
+            modelBuilder.Configurations.Add(new DeviceDataMap());
             base.OnModelCreating(modelBuilder);
         }
     }
