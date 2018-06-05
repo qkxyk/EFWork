@@ -138,8 +138,8 @@ namespace EFWork.Controllers
         {
             using (var db= new EFWorkContext())
             {
-                var devices = db.Device.Include(a => a.DeviceData).Where(a=>a.DeviceData.DeviceId<3).ToList();//.Where(a=>a.DeviceData.Dt>)
-                var d = devices.OrderByDescending(a => a.DeviceData.DeviceId).ToList();
+                var devices = db.Device.Include(a => a.DeviceData);//.Where(a=>a.DeviceData.DeviceId<3).ToList();//.Where(a=>a.DeviceData.Dt>)
+                var d = devices.OrderBy(a => a.DeviceData.Dt).ToList();
                 return Json("abc", JsonRequestBehavior.AllowGet);
             }
         }
