@@ -146,10 +146,18 @@
     <Compile Include="Migrations\201805300754371_dataaddname.Designer.cs">
       <DependentUpon>201805300754371_dataaddname.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806050846317_adddevice.cs" />
+    <Compile Include="Migrations\201806050846317_adddevice.Designer.cs">
+      <DependentUpon>201806050846317_adddevice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Entity\DevicDataModel.cs" />
+    <Compile Include="Models\Entity\DeviceModel.cs" />
+    <Compile Include="Models\Entity\DeviceTypeModel.cs" />
     <Compile Include="Models\Maps\DeviceDataMap.cs" />
     <Compile Include="Models\EFWorkContext.cs" />
+    <Compile Include="Models\Maps\DeviceMap.cs" />
+    <Compile Include="Models\Maps\DeviceTypeMap.cs" />
     <Compile Include="Models\Maps\MenuMap.cs" />
     <Compile Include="Models\Entity\MenuModel.cs" />
     <Compile Include="Models\Maps\ProjectMap.cs" />
@@ -234,6 +242,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805300754371_dataaddname.resx">
       <DependentUpon>201805300754371_dataaddname.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806050846317_adddevice.resx">
+      <DependentUpon>201806050846317_adddevice.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

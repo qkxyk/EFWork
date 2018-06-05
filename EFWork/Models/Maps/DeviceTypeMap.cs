@@ -4,14 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity.ModelConfiguration;
 
-
 namespace EFWork.Models
 {
-    public class DeviceDataMap : EntityTypeConfiguration<DeviceDataModel>
+    public class DeviceTypeMap:EntityTypeConfiguration<DeviceTypeModel>
     {
-        public DeviceDataMap()
+        public DeviceTypeMap()
         {
-            this.ToTable("DeviceData").HasKey(a => a.DeviceId);
+            this.ToTable("DevcieType").HasKey(a=>a.Id);
         }
     }
 }

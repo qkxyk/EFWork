@@ -52,6 +52,12 @@
                 });
             });
 
+            $("#device").click(function () {
+                $.getJSON("/home/GetDevice", {}, function (data) {
+                    console.log("abc");
+                });
+            });
+
         });
     </script>
 }
@@ -71,4 +77,8 @@
     <label for="deviceName">设备名称</label><input type="text" id="deviceName" />
     <label for="deviceMessage">设备信息</label><input type="text" id="deviceMessage" />
     <input type="button" id="AddDeviceData" value="添加设备数据" />
+</div>
+
+<div class="row">
+    <label for="device">查找设备</label><input type="button" id="device" value="设备状态" />
 </div>

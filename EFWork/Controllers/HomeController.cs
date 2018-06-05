@@ -116,11 +116,9 @@ namespace EFWork.Controllers
 
         public async Task<ActionResult> AddOrUpdate(DeviceDataModel d)
         {
-            return null;
-            /*
             using (var db = new EFWorkContext())
             {
-                var dd = await db.DeviceData.Where(a => a.Name == d.Name).FirstOrDefaultAsync();//.FirstOrDefault();
+                var dd = await db.DeviceData.AsNoTracking().Where(a => a.Name == d.Name).FirstOrDefaultAsync();//.FirstOrDefault();
                 if (dd == null)
                 {
                     dd = db.DeviceData.Add(d);
@@ -132,9 +130,18 @@ namespace EFWork.Controllers
                     db.Entry<DeviceDataModel>(dd).State = EntityState.Modified;
                 }
                 db.SaveChanges();
-                return Json(new { dd.Id });
+                return Json(new { dd.DeviceId });
             }
-            */
+        }
+
+        public ActionResult GetDevice()
+        {
+            using (var db= new EFWorkContext())
+            {
+                var devices = db.Device.Include(a => a.DeviceData).Where(a=>a.DeviceData.DeviceId<3).ToList();//.Where(a=>a.DeviceData.Dt>)
+                var d = devices.OrderByDescending(a => a.DeviceData.DeviceId).ToList();
+                return Json("abc", JsonRequestBehavior.AllowGet);
+            }
         }
         public ActionResult About()
         {

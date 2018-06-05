@@ -40,3 +40,4 @@ D:\practice\C#\May\EFWork\EFWork\bin\System.Linq.Dynamic.dll
 D:\practice\C#\May\EFWork\EFWork\obj\Debug\EFWork.Migrations.user.resources
 D:\practice\C#\May\EFWork\EFWork\obj\Debug\EFWork.Migrations.adddata.resources
 D:\practice\C#\May\EFWork\EFWork\obj\Debug\EFWork.Migrations.dataaddname.resources
+D:\practice\C#\May\EFWork\EFWork\obj\Debug\EFWork.Migrations.adddevice.resources

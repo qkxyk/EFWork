@@ -20,6 +20,8 @@ namespace EFWork.Models
         public IDbSet<UserModel> User { get; set; }
         public IDbSet<UserRoleModel> UserRole { get; set; }
         public IDbSet<DeviceDataModel> DeviceData { get; set; }
+        public IDbSet<DeviceModel> Device { get; set; }
+        public IDbSet<DeviceTypeModel> DeviceType { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -31,6 +33,8 @@ namespace EFWork.Models
             modelBuilder.Configurations.Add(new UserRoleMap());
             modelBuilder.Configurations.Add(new UserMap());
             modelBuilder.Configurations.Add(new DeviceDataMap());
+            modelBuilder.Configurations.Add(new DeviceMap());
+            modelBuilder.Configurations.Add(new DeviceTypeMap());
             base.OnModelCreating(modelBuilder);
         }
     }
