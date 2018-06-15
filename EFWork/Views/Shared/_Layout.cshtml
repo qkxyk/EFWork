@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - 我的 ASP.NET 应用程序</title>
@@ -10,7 +10,7 @@
     @RenderSection("css", required: false)
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top ">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -29,7 +29,14 @@
             </div>
         </div>
     </div>
+  <div class="clearfix" style="margin-bottom: 5px;"></div>  <!-- 清除浮动 -->
     <div class="container body-content">
+        <div class="row rowmargin">
+            <ul class="list-inline">
+                <li class="col-md-2 "><a class="btn btn-primary btn-block active" href="/Device/">设备管理</a></li>
+                <li class="col-md-2 "><a class="btn  btn-primary btn-block active" href="/Group">团队管理</a></li>
+            </ul>
+        </div>
         @RenderBody()
         <hr />
         <footer>

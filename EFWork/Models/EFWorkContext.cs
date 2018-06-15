@@ -7,9 +7,9 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace EFWork.Models
 {
-    public class EFWorkContext:DbContext
+    public class EFWorkContext : DbContext
     {
-        public EFWorkContext():base("EFWork")
+        public EFWorkContext() : base("EFWork")
         {
 
         }
@@ -23,6 +23,10 @@ namespace EFWork.Models
         public IDbSet<DeviceModel> Device { get; set; }
         public IDbSet<DeviceTypeModel> DeviceType { get; set; }
 
+        public IDbSet<GroupModel> Group { get; set; }
+        public IDbSet<DeviceTypeTemplateModel> DeviceTypeTemplate { get; set; }
+        public IDbSet<TypeDefineModel> TypeDefine { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
@@ -35,6 +39,9 @@ namespace EFWork.Models
             modelBuilder.Configurations.Add(new DeviceDataMap());
             modelBuilder.Configurations.Add(new DeviceMap());
             modelBuilder.Configurations.Add(new DeviceTypeMap());
+            modelBuilder.Configurations.Add(new GroupMap());
+            modelBuilder.Configurations.Add(new DeviceTypeTemplateMap());
+            modelBuilder.Configurations.Add(new TypeDefineMap());
             base.OnModelCreating(modelBuilder);
         }
     }

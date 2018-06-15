@@ -10,6 +10,10 @@ using System.Web;
 using System.Web.Mvc;
 
 using System.Linq.Dynamic;
+using EFWork.Services;
+using System.Data.Sql;
+using System.Data;
+using Newtonsoft.Json.Converters;
 
 namespace EFWork.Controllers
 {
@@ -17,6 +21,13 @@ namespace EFWork.Controllers
     {
         public ActionResult Index()
         {
+            //float a = 2.1f;
+            //float b = a*10 % 1.0f;
+            //string strb = b.ToString();
+            //string str = a.ToString();
+            //decimal ad = 2.1m;
+            //decimal dd = ad % 1;
+            //string[] strs = str.Split('.');
             return View();
         }
 
@@ -134,15 +145,49 @@ namespace EFWork.Controllers
             }
         }
 
-        public ActionResult GetDevice()
+        public async Task<ActionResult> GetDevice()
         {
-            using (var db= new EFWorkContext())
+            DeviceServices ds = new DeviceServices();
+            IEnumerable<Dev> dev = null;
+            try
             {
+                dev = await ds.GetDevice("Dt desc");
+                List<Dev> de = new List<Dev>();
+                foreach (var item in dev)
+                {
+                  
+                    item.Dt.ToUniversalTime(); //.ToLocalTime();
+                }
+            }
+            catch (Exception ex)
+            {
+                string mess = ex.Message;
+            }
+            return Json(dev, JsonRequestBehavior.AllowGet);
+            #region 直接调用
+            /*
+            using (var db = new EFWorkContext())
+            {
+                var dev = db.Device.Include(a => a.DeviceData).Select(c => new Dev() { DeviceId = c.DeviceId, DeviceName = c.DeviceName, DeviceTypeName = c.DeviceType.Name, Dt = c.DeviceData== null?DateTime.Now:c.DeviceData.Dt, Message = c.DeviceData.Message });
+                IEnumerable<Dev> dd = null;
+                try
+                {
+                    dd = dev.OrderByDescending(a => a.Dt).Skip(0).Take(10).ToList();
+                }
+                catch (Exception ex)
+                {
+                    string me = ex.Message;
+                }
+
+                //var devi = db.Device.Include(a => a.DeviceData).Include(a => a.DeviceType).Select(a => new{ a.DeviceId,a.DeviceName,a.DeviceType.Name,a.DeviceData.Name as aa, })
+
                 var devices = db.Device.Include(a => a.DeviceData);//.Where(a=>a.DeviceData.DeviceId<3).ToList();//.Where(a=>a.DeviceData.Dt>)
                 var d = devices.OrderBy(a => a.DeviceData.Dt).ToList();
-                return Json("abc", JsonRequestBehavior.AllowGet);
-            }
+                return Json(dd, JsonRequestBehavior.AllowGet);
+            }*/
+            #endregion
         }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -185,5 +230,14 @@ namespace EFWork.Controllers
             IQueryable<T> query = DataSort<T>(source, sortExpression, sortDirection);
             return DataPaging(query, pageNumber, pageSize);
         }
+    }
+
+    public class Dev
+    {
+        public int DeviceId { get; set; }
+        public string DeviceName { get; set; }
+        public string DeviceTypeName { get; set; }
+        public DateTime Dt { get; set; }
+        public string Message { get; set; }
     }
 }

@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@section scripts{
+    <script src="~/Scripts/bootstrap-table.js"></script>
+    <script>
+   
+        $(document).ready(function () {
+            $('#table').bootstrapTable({
+                url: "/Device/GetDeviceTypeTemp",
+                columns: [{
+                    field: 'Token',
+                    title: 'Token'
+                }, {
+                    field: 'Name',
+                    title: 'Name'
+                }, {
+                    field: 'Code',
+                    title: 'code'
+                }, ]
+            });
+
+
+            $("#DeviceType").click(function () {
+                console.log("abc");
+                $.getJSON("/Device/GetDeviceType", "", function (data) {
+                    console.log(data);
+                    try {
+                        data = JSON.parse(data);
+                    } catch (e) {
+                    }
+                    $("#DeviceTypeData").empty();
+                    var leng = data.length;
+                    var tt = "";
+                    $.each(data, function (idx, obj) {
+                        $("#DeviceTypeData").append("<li  class='list-group-item' value='" + obj.Id + "'>" + obj.Id + obj.Name + "</li>")
+                        tt += "~~~" + obj.Name;
+                    });
+                    console.log(tt);
+                    for (var i = 0; i < leng; i++) {
+                        console.log(data[i].Id + data[i].Name);
+                    }
+                });
+            });
+
+            $("#DeviceTypeData").on("click", "li", function () {
+                $("#txtDeviceType").val($(this).val());
+                console.log($(this).val() + $(this).text());
+            });
+
+        });
+
+        $(function () {
+            console.log("b");
+        });
+    </script>
+}
+<div class="row rowmargin">
+
+    <form class="form-inline">
+        <div class="form-group">
+            <label for="txtDeviceType">类型编号</label>
+            <input type="text" class="form-control" id="txtDeviceType" placeholder="类型编号" />
+        </div>
+        <div class="form-group">
+            <label for="txtTemplateName">模版名称</label>
+            <input type="text" class="form-control" id="txtTemplateName" placeholder="txtTemplateName">
+        </div>
+        <div class="form-group">
+            <label for="selectStandard">是否标准模版</label>
+            <select class="form-control" id="selectStandard">
+                <option value="1">标准</option>
+                <option value="2">非标准</option>
+            </select>
+        </div>
+        <button type="submit" id="btnTypeTemplate" class="btn btn-default">Submit</button>
+    </form>
+</div>
+<div class="row rowmargin"><input type="button" class="btn  btn-primary" id="DeviceType" value="设备类型" /></div>
+
+<div class="row" style="width:150px">
+    <ul class="list-group" id="DeviceTypeData"></ul>
+</div>
+<div class="row">
+    <table id="table"></table>
+</div>

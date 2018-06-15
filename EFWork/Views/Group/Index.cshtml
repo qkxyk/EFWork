@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+@section scripts{
+@*<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>*@
+    <script src="~/Scripts/bootstrap-table.js"></script>
+    <script>
+        
+        $(document).ready(function () {
+            //获取现有的组织信息
+            $('#table').bootstrapTable({
+                url: "/group/GetGroupData",
+                columns: [{
+                    field: 'Token',
+                    title: 'Token'
+                }, {
+                    field: 'Name',
+                    title: 'Name'
+                }, {
+                    field: 'Code',
+                    title: 'code'
+                }, ]
+            });
+            $.getJSON("/group/GetGroupData", "", function (data) {
+                console.log(data);
+               
+               
+            });
+        });
+    </script>
+}
+<table id="table" class="table table-striped table-bordered"></table>
+
+@using (Html.BeginForm("AddGroup", "Group", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <div class="form-group">
+        <label for="groupname">GroupName</label>
+        <input type="text" class="form-control" id="groupname" name="Name" placeholder="groupname">
+    </div>
+    <div class="form-group">
+        <label for="groupcode">Group Code</label>
+        <input type="text" class="form-control" id="groupcode" name="Code" placeholder="Code">
+    </div>
+        <button type="submit" id="btnGroupAdd" class="btn btn-default">Submit</button>
+}
+

@@ -126,6 +126,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DeviceController.cs" />
+    <Compile Include="Controllers\GroupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -150,18 +152,28 @@
     <Compile Include="Migrations\201806050846317_adddevice.Designer.cs">
       <DependentUpon>201806050846317_adddevice.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806130331354_addgroup.cs" />
+    <Compile Include="Migrations\201806130331354_addgroup.Designer.cs">
+      <DependentUpon>201806130331354_addgroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Entity\DevicDataModel.cs" />
     <Compile Include="Models\Entity\DeviceModel.cs" />
     <Compile Include="Models\Entity\DeviceTypeModel.cs" />
+    <Compile Include="Models\Entity\DeviceTypeTemplateModel.cs" />
+    <Compile Include="Models\Entity\GroupModel.cs" />
+    <Compile Include="Models\Entity\TypeDefineModel.cs" />
     <Compile Include="Models\Maps\DeviceDataMap.cs" />
     <Compile Include="Models\EFWorkContext.cs" />
     <Compile Include="Models\Maps\DeviceMap.cs" />
     <Compile Include="Models\Maps\DeviceTypeMap.cs" />
+    <Compile Include="Models\Maps\DeviceTypeTemplateMap.cs" />
+    <Compile Include="Models\Maps\GroupMap.cs" />
     <Compile Include="Models\Maps\MenuMap.cs" />
     <Compile Include="Models\Entity\MenuModel.cs" />
     <Compile Include="Models\Maps\ProjectMap.cs" />
     <Compile Include="Models\Entity\ProjectModel.cs" />
+    <Compile Include="Models\Maps\TypeDefineMap.cs" />
     <Compile Include="Models\ViewModel\ProjectResponse.cs" />
     <Compile Include="Models\Maps\RoleMap.cs" />
     <Compile Include="Models\Entity\RoleModel.cs" />
@@ -174,12 +186,19 @@
     <Compile Include="Models\Maps\UserRoleMap.cs" />
     <Compile Include="Models\Entity\UserRoleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\DeviceServices.cs" />
+    <Compile Include="Services\DeviceTypeServices.cs" />
+    <Compile Include="Services\GroupService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-responsive.css" />
+    <Content Include="Content\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\glyphicons-halflings-white.png" />
+    <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -187,6 +206,7 @@
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\bootstrap-table.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -213,6 +233,8 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Device\Index.cshtml" />
+    <Content Include="Views\Group\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -245,6 +267,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806050846317_adddevice.resx">
       <DependentUpon>201806050846317_adddevice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806130331354_addgroup.resx">
+      <DependentUpon>201806130331354_addgroup.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

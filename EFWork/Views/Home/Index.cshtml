@@ -5,7 +5,8 @@
 @section scripts{
     <script>
         $(function () {
-
+            //var a = 2.1;
+            //console.log(a * 10 - parseInt(a) * 10);
             $("#GetAll").click(function () {
                 var page = $("#page").val();
                 console.log(page);
@@ -48,13 +49,22 @@
                 var deviceName = $("#deviceName").val();
                 var deviceMessage = $("#deviceMessage").val();
                 $.post("/home/AddOrUpdate", { "Name": deviceName, "Message": deviceMessage }, function (data) {
-                    console.log(data);
+                    //console.log(data);
+                    var length = data.length;
+                    console.log(length);
+                    for (var i = 0; i < length; i++) {
+                        console.log(data[i]);
+                    }
                 });
             });
 
             $("#device").click(function () {
                 $.getJSON("/home/GetDevice", {}, function (data) {
-                    console.log("abc");
+                    var length = data.length;
+                    console.log(length);
+                    for (var i = 0; i < length; i++) {
+                        console.log(data[i].DeviceId + data[i].Dt);
+                    }
                 });
             });
 
@@ -62,8 +72,8 @@
     </script>
 }
 
-
-<div class="row">
+<!-- <div class="clearfix" style="margin-bottom: 10px;"></div>清除浮动 -->
+<div class="row rowmargin">
     <input type="button" id="GetAll" value="获取所有项目" />
     <input type="text" id="page" />
     <input type="button" id="GetRole" value="获取角色项目" />

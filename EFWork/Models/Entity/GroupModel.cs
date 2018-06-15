@@ -5,12 +5,12 @@ using System.Web;
 
 namespace EFWork.Models
 {
-    public class DeviceTypeModel
+    public class GroupModel
     {
-        public int Id { get; set; }
+        public string Token { get; set; }
         public string Name { get; set; }
+        public string Code { get; set; }
 
-        public virtual ICollection<DeviceModel> Devices { get; set; }
         public virtual ICollection<DeviceTypeTemplateModel> DeviceTypeTemplateModel { get; set; }
     }
 }
